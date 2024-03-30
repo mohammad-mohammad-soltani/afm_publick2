@@ -2,15 +2,15 @@ Options All -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /panel/
+    RewriteBase /AFM/panel/
     
     # این تنظیمات به دلیل مطابقت با مسیر فایل .json هستند
     <FilesMatch "\.(json)$">
-        RewriteRule ^(.*)$ /panel/index.php?file=$1 [QSA,L]
+        RewriteRule ^(.*)$ /AFM/panel/index.php?file=$1 [QSA,L]
     </FilesMatch>
 
     # این قسمت برای هدایت همه‌ی درخواست‌ها به index.php می‌باشد
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /panel/index.php [L]
+    RewriteRule . /AFM/panel/index.php [L]
 </IfModule>

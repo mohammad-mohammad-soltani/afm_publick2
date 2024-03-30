@@ -32,7 +32,25 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                         </div>
                     </div>
                    <?php
+                   $result_id = sha1($_SESSION["WEB_C"]).uniqid();
+                    $event = array(
+                        "title" => "حذف پس زمینه",
+                        "information" => "حذف پس زمینه شما با موفقیت صورت پذیرفت",
+                        "success" => "true",
+                        "result_page" => url."RESULT/".$result_id,
+                    );
+                    $page = array(
+                        '<div class="gallery card">
+                            <a class="gallery-image popup-image" id="rm_ed_img" href="<?php echo url."tools/uploads/".$file ?>">
+                                <img class="w-100 rounded-top" src="'. url."tools/uploads/".$file .'" alt="">
+                            </a>
+                            <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
 
+                                <p>پس زمینه تصویر شما با موفقیت حذف گردید!</p>
+                            </div>
+                        </div>'
+                    );
+                    add_event("RM_BACK",$event,math_ai_init()["username"],$page,$result_id);
                 }else{
                     ?>
                     <br>
@@ -42,6 +60,13 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                     </div>
                    
                     <?php
+                     $event = array(
+                        "title" => "حذف پس زمینه",
+                        "information" => "مشکلی ناشناخته وجود داشت",
+                        "success" => "false",
+                       
+                    );
+                    add_event("RM_BACK",$event,math_ai_init()["username"]);
                 }
                 //unlink($targetFile);
             } else {
@@ -52,6 +77,13 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                         <em class="icon ni ni-cross-circle"></em>خطایی وجود داشت 
                     </div>
                 <?php
+                 $event = array(
+                    "title" => "حذف پس زمینه",
+                    "information" => "مشکلی ناشناخته وجود داشت",
+                    "success" => "false",
+                   
+                );
+                add_event("RM_BACK",$event,math_ai_init()["username"]);
             }
         } else {
             $message = 'فرمت فایل معتبر نیست. فرمت‌های مجاز شامل jpg، jpeg و png می‌باشند.';
@@ -62,7 +94,13 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                 <em class="icon ni ni-cross-circle"></em>خطایی وجود داشت : <?php echo $message ?>
             </div>
             <?php
-            
+             $event = array(
+                "title" => "حذف پس زمینه",
+                "information" => "پس زمینه به دلیل پسوند نادرست حذف نشد",
+                "success" => "false",
+               
+            );
+            add_event("RM_BACK",$event,math_ai_init()["username"]);
         }
     } else {
         $message = 'فرمت فایل معتبر نیست. فرمت‌های مجاز شامل jpg، jpeg و png می‌باشند.';
@@ -74,6 +112,13 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
             <em class="icon ni ni-cross-circle"></em>خطایی وجود داشت : <?php echo $message ?>
         </div>
         <?php
+         $event = array(
+            "title" => "حذف پس زمینه",
+            "information" => "پس زمینه به دلیل پسوند نادرست حذف نشد",
+            "success" => "false",
+           
+        );
+        add_event("RM_BACK",$event,math_ai_init()["username"]);
     }
 } else {
     $message = "لطفا ابتدا فایلی را انتخاب نمایید";

@@ -48,18 +48,8 @@ require_once(header);
                 </div>
             </div><!-- .card -->
         </div><!-- .col -->
-        <div class="col-sm-6 col-xxl-3 filter-item ai" data-category="ai" style="position: absolute; left: 461.4px; top: 181.688px;">
-            <div class="card card-full">
-                <div class="card-inner">
-                    <div class="user-avatar text-primary bg-primary-dim mb-3">
-                        <em class="icon ni ni-file-text-fill"></em>
-                    </div>
-                    <h5 class="title">صوت به متن</h5>
-                    <p class="sub-text">تبدیل صدای شما به متن با هوش مصنوعی</p>
-                </div>
-            </div><!-- .card -->
-        </div><!-- .col -->
-        <div class="col-sm-6 col-xxl-3 filter-item ai" data-category="ai" style="position: absolute; left: 0px; top: 384.825px;">
+        
+        <a href="<?php echo url."convertor_ai/tts" ?>" class="col-sm-6 col-xxl-3 filter-item ai" data-category="ai" style="position: absolute; left: 0px; top: 384.825px;">
             <div class="card card-full">
                 <div class="card-inner">
                     <div class="user-avatar text-primary bg-primary-dim mb-3">
@@ -69,7 +59,7 @@ require_once(header);
                     <p class="sub-text">تبدیل متن شما به صدا با دو کاراکتر زن و مرد</p>
                 </div>
             </div><!-- .card -->
-        </div><!-- .col -->
+        </a><!-- .col -->
         <div class="col-sm-6 col-xxl-3 filter-item ai" data-category="ai" style="position: absolute; left: 461.4px; top: 384.825px;">
             <div class="card card-full">
                 <div class="card-inner">

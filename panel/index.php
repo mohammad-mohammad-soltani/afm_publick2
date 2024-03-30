@@ -198,6 +198,18 @@ $pages = array (
     "quality/up"=> array(
         "file_path"=> "tools/tools/high_quality/up.php",
     ),
+    "convertor_ai/tts"=> array(
+        "file_path"=> "tools/tools/tts/tts.php",
+    ),
+    "convertor_ai/stt"=> array(
+        "file_path"=> "tools/tools/stt/tts.php",
+    ),
+    "HISTORY/ALL"=> array(
+        "file_path"=> "history/all.php",
+    ),
+    "tag/create"=> array(
+        "file_path"=> "tools/tools/",
+    ),
     
     "test_work"=> array(
         "file_path"=> "main.php",
@@ -224,7 +236,7 @@ function get_module_name() {
 }
 
 $link = get_module_name();
-if(!isset($pages[$link]) && !isset($dont_activated[$link]) && explode("/",$link)[0] != "WEB_C"&& explode("/",$link)[0] != "REMOVE_BACK"&& explode("/",$link)[0] != "QUALITY_UP" && explode("/",$link)[0] != "users"&& explode("/",$link)[0] != "answer_the_question"&& explode("/",$link)[0] != "question_viwe"&& explode("/",$link)[0] != "get_answer"&& explode("/",$link)[0] != "start_chat"){
+if(!isset($pages[$link]) && !isset($dont_activated[$link]) && explode("/",$link)[0] != "WEB_C"&& explode("/",$link)[0] != "RESULT" && explode("/",$link)[0] != "REMOVE_BACK"&& explode("/",$link)[0] != "QUALITY_UP" && explode("/",$link)[0] != "users"&& explode("/",$link)[0] != "answer_the_question"&& explode("/",$link)[0] != "question_viwe"&& explode("/",$link)[0] != "get_answer"&& explode("/",$link)[0] != "start_chat"){
     require_once(__DIR__."/lib/404_error_page.php");
     
 }elseif(explode("/",$link)[0] == "WEB_C"){
@@ -256,6 +268,13 @@ if(!isset($pages[$link]) && !isset($dont_activated[$link]) && explode("/",$link)
                     return $client_data;
                 }
                require_once(directory."tools/tools/high_quality/handle.php");
+            }
+            if($operator == "TTS"){
+                function math_ai_init(){
+                    global $client_data;
+                    return $client_data;
+                }
+               require_once(directory."tools/tools/tts/handle.php");
             }
             if($operator == "AI_CHAT"){
                 function ai_init(){
@@ -326,6 +345,17 @@ if(!isset($pages[$link]) && !isset($dont_activated[$link]) && explode("/",$link)
         }
         
         require_once(directory."user/information/information.php");
+    }
+}elseif(explode("/",$link)[0] == "RESULT"){
+    $e = explode("/",$link);
+    if(isset($e[1])){
+        $id = $e[1];
+        function history_init(){
+            global $id;
+            return $id;
+        }
+        
+        require_once(directory."history/output.php");
     }
 }elseif(explode("/",$link)[0] == "question_viwe"){
     $e = explode("/",$link);

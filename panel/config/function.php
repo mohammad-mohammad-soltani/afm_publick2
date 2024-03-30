@@ -218,5 +218,63 @@ function send_sms_a($tel,$id){
     $out = file_get_contents("http://ippanel.com:8080/?apikey=".sms_API_key."&pid=".sms_pattern_verify."&fnum=3000505&tnum=$tel&p1=id&v1=".$id);
     
 }
+function add_event($type , $data , $username , $result_page = null , $result_id = null){
+    $conn = new mysqli(server,username,password,db);
+    $time = time();
+    $encode_data = json_encode($data , JSON_UNESCAPED_UNICODE);
+    $encode_data = $conn -> real_escape_string($encode_data); 
+    $sql = "INSERT INTO `history`(`id`, `type`, `information`, `username`, `time`) VALUES (NULL,'$type','$encode_data','$username','$time')";
+    $conn -> query($sql);
+    if($data["success"] == "true"){
+        $result_page = json_encode($result_page);
+        $result_page = $conn -> real_escape_string($result_page);
+        $sql = "INSERT INTO `history_page`(`id`, `result_id`, `content`) VALUES (NULL,'$result_id','$result_page')";
+        $conn->query($sql);
+    }
+    
+}
+function get_history($limit,$username){
+    $conn = new mysqli(server,username,password,db);
+    $sql = "SELECT * FROM `history` WHERE `username` = '$username' ORDER BY id DESC LIMIT $limit ";
+   
+    $result = $conn -> query($sql);
+    $conn -> close();
+    return $result;
+    
+}
+function get_history_nolimit($username){
+    $conn = new mysqli(server,username,password,db);
+    $sql = "SELECT * FROM `history` WHERE `username` = '$username' ORDER BY id DESC ;";
+   
+    $result = $conn -> query($sql);
+    $conn -> close();
+    return $result;
+    
+}
+function history_type($type){
+    switch ($type) {
+        case 'TTS':
+            $data = array(
+                "title" => "متن به صوت",
+                "icon" => "icon ni ni-repeat-v",
+                "success" => "متن شما با موفقیت به صوت تبدیل شد",
+                "danger" => "خطایی در ساخت صوت وجود داشت..."
+            );
+            break;
+        case 'RM_BACK':
+            # code...
+            $data = array(
+                "title" => "حذف پس زمینه",
+                "icon" => "icon ni ni-delete",
+                "success" => "پس زمینه تصویر شما با موفقیت حذف شد",
+                "danger" => "خطایی در حذف پس زمینه وجود داشت"
+            );
+            break;
+        
+       
+    }
+    return $data;
+}
+
 require_once("web_client.php");
 $conn->close();

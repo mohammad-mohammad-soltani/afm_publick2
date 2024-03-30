@@ -120,7 +120,15 @@ require_once(__DIR__."/panel/config/config.php");
                             <p class="pe-lg-5">با AFM دیگه لازم نیست برای درس خوندنت نگران باشی چون با الگوریتم های پیشرفته ای که ما طراحی کرده ایم شما میتوانید جواب هر یک از سوالات خود را به راحتی پیدا کنید</p>
                             <div class="btn-bar">
                                 <a class="px-btn px-btn-theme" href="<?php echo login_page ?>">ورود | ثبت نام <i class="fas fa-user"></i> </a>
-                                <a class="px-btn px-btn-theme" href="ble.ir/aiformathbot">ربات هوش مصنوعی در بله<i class="bi bi-web"></i> </a>
+                                <span>  </span>
+                                
+                                <a class="px-btn px-btn-theme" href="https://ble.ir/aiformathbot">ربات هوش مصنوعی<i class="bi bi-web"></i> </a>
+                                <br>
+                                <span>
+
+                                </span>
+                                <br>
+                                <a  class="px-btn px-btn-theme mx-auto" href="https://myket.ir/app/ir.sadatsch.afm">اپلیکیشن اندروید<i class="bi bi-web"></i> </a>
                             </div>
                             
                         </div>
@@ -581,7 +589,9 @@ require_once(__DIR__."/panel/config/config.php");
                         <div class="contact-form">
                             <div class="contact-head">
                                 <h4>پیشنهادی درباره AFM دارید ؟ </h4>
+                               
                                 <p>آن را با ما در میان بگذارید</p>
+                                <p>ایمیل پشتیبانی : mypc264fm@gmail.com</p>
                             </div>
                             <form id="contact-form" action="send.php" method="POST">
                                 <div class="row gx-3 gy-4">
